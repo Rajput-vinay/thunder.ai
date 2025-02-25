@@ -1,37 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tunder.ai
 
-## Getting Started
+Tunder.ai is a **Blot.new clone** that allows users to **generate React.js websites**, customize them through commands, and preview their changes in real-time. Users can also download the generated code for further modifications.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Generate React.js Websites**: Instantly create a fully functional React.js website.
+- **Real-time Customization**: Modify the website by providing commands.
+- **Live Preview**: See real-time updates as you make changes.
+- **Download Code**: Export the generated code for further development.
+
+## 🛠 Tech Stack
+
+- **Next.js**: For server-side rendering and efficient page routing.
+- **Convex**: For real-time data fetching and backend logic.
+- **ShadCN**: For modern and responsive UI components.
+
+## 📦 Installation
+
+```sh
+# Clone the repository
+git clone https://github.com/Rajput-vinay/tunder.ai.git
+cd my-app
+
+# Install dependencies
+npm install  # or yarn install
+
+# Run the development server
+npm run dev  # or yarn dev
+
+# Open your browser and navigate to:
+http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Usage
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+1. Open the Tunder.ai interface.
+2. Use commands to generate and customize your React.js website.
+3. Preview changes in real-time.
+4. Download the code when you're satisfied with the customization.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Contributing
 
-## Learn More
+Contributions are welcome! Feel free to fork the repository, make improvements, and submit a pull request.
 
-To learn more about Next.js, take a look at the following resources:
+## 📜 License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This project is licensed under the MIT License.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+🚀 **Start building your custom React.js website with Tunder.ai today!**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# tunder.ai
