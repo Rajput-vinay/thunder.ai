@@ -5,9 +5,9 @@ export default {
   HERO_HEADING: 'What do you want to build?',
   HERO_DESC: 'Prompt, run, edit, and deploy full-stack web apps.',
   INPUT_PLACEHOLDER: 'What you want to build?',
-  SIGNIN_HEADING: 'Continue With tundert.New 2.0',
-  SIGNIN_SUBHEADING: 'To use tundert you must log into an existing account or create one.',
-  SIGNIn_AGREEMENT_TEXT: 'By using tundert, you agree to the collection of usage data for analytics.',
+  SIGNIN_HEADING: 'Continue With Thunder.New 2.0',
+  SIGNIN_SUBHEADING: 'To use Thunder you must log into an existing account or create one.',
+  SIGNIn_AGREEMENT_TEXT: 'By using Thunder, you agree to the collection of usage data for analytics.',
 
 
   DEFAULT_FILE: {
@@ -27,22 +27,20 @@ export default {
     },
     '/App.css': {
       code: `
-            @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;`
     },
     '/tailwind.config.js': {
       code: `
             /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}`
+ export default {
+>   content: ["./src/**/*.{html,js}"],
+    theme: {
+      extend: {},
+    },
+    plugins: [],
+  }`
     },
     '/postcss.config.js': {
       code: `/** @type {import('postcss-load-config').Config} */
@@ -59,7 +57,7 @@ export default config;
   DEPENDANCY: {
 
     "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "tailwindcss": "^3.4.17",
     "autoprefixer": "^10.0.0",
     "uuid4": "^2.0.3",
     "tailwind-merge": "^2.4.0",
@@ -85,21 +83,21 @@ export default config;
       name:'Starter',
       tokens:'120K',
       value:120000,
-      desc:'Designed for professionals who need to use tunder a few times per week.',
+      desc:'Designed for professionals who need to use Thunder a few times per week.',
       price:9.99
     },
     {
       name:'Pro',
       tokens:'2.5M',
       value:2500000,
-      desc:'Designed for professionals who need to use tunder a few times per week.',
+      desc:'Designed for professionals who need to use Thunder a few times per week.',
       price:19.99
     },
     {
       name:'Unlimted (License)',
       tokens:'Unmited',
       value:999999999,
-      desc:'Designed for professionals who need to use tunder a few times per week.',
+      desc:'Designed for professionals who need to use Thunder a few times per week.',
       price:49.99
     }
   ]

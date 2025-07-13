@@ -17,7 +17,7 @@ import { useParams } from "next/navigation";
 import { Loader2Icon } from "lucide-react";
 import { countToken } from "./ChatView";
 import { userDetailsContext } from "../context/userDetailsContext";
-import SandPackPreviewClient from "./SandPackPreviewClient"
+import SandPackPreviewClient from "./SandPackPreviewClient";
 import { ActionContext } from "../context/ActionContext";
 function CodeView() {
   const [activeTab, setActiveTab] = useState("code");
@@ -29,15 +29,13 @@ function CodeView() {
   const [loading, setLoading] = useState(false);
   const { userDetails, setUserDetails } = useContext(userDetailsContext);
   const UpdateToken = useMutation(api.users.UpdateToken);
- const {action, setAction} = useContext(ActionContext)
- 
- 
- useEffect(()=>{
-  setActiveTab('preview')
-},[ action])
+  const { action, setAction } = useContext(ActionContext);
 
- 
- useEffect(() => {
+  useEffect(() => {
+    setActiveTab("preview");
+  }, [action]);
+
+  useEffect(() => {
     if (id) {
       GetFiles();
     }
@@ -89,7 +87,10 @@ function CodeView() {
       const extractedFiles = aiResponse.files || aiResponse.generatedFiles;
 
       if (!extractedFiles || typeof extractedFiles !== "object") {
-        console.error("AI response does not contain valid files:", extractedFiles);
+        console.error(
+          "AI response does not contain valid files:",
+          extractedFiles
+        );
         return;
       }
 
@@ -101,11 +102,13 @@ function CodeView() {
         files: extractedFiles,
       });
 
-      const token = Number(userDetails?.token) - Number(countToken(JSON.stringify(aiResponse)));
-      setUserDetails( prev =>({
+      const token =
+        Number(userDetails?.token) -
+        Number(countToken(JSON.stringify(aiResponse)));
+      setUserDetails((prev) => ({
         ...prev,
-        token:token
-      }))
+        token: token,
+      }));
 
       await UpdateToken({
         userId: userDetails?._id,
@@ -132,7 +135,9 @@ function CodeView() {
           </h2>
           <h2
             className={`text-sm cursor-pointer p-1 px-2 rounded-full ${
-              activeTab === "preview" ? "bg-blue-500 text-white" : "text-gray-300"
+              activeTab === "preview"
+                ? "bg-blue-500 text-white"
+                : "text-gray-300"
             }`}
             onClick={() => setActiveTab("preview")}
           >
@@ -162,7 +167,7 @@ function CodeView() {
             </>
           ) : (
             <>
-             <SandPackPreviewClient />
+              <SandPackPreviewClient />
             </>
           )}
         </SandpackLayout>

@@ -8,6 +8,7 @@ export async function POST(req){
    try{
      const result = await GenAiCode.sendMessage(prompt);
      const response = result.response.text();
+     console.log("response-ai-code", response);
      return NextResponse.json(JSON.parse(response))
    }catch(e){
      return NextResponse.json({error:e})

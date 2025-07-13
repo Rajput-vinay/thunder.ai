@@ -11,6 +11,7 @@ const {
     model: "gemini-2.0-flash",
   });
   
+  //  copy All code from Gemini API Studio for parse the string from it and generate data in JSON
   const generationConfig = {
     temperature: 1,
     topP: 0.95,
@@ -38,7 +39,7 @@ const {
     // console.log(result.response.text());
  
 
-   
+  
 
     export const GenAiCode = model.startChat({
       generationConfig: CodeGenerationConfig,

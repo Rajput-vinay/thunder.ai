@@ -9,7 +9,7 @@ import {
 } from "../components/ui/dialog";
 import Lookup from "../data/Lookup";
 import { useGoogleLogin } from "@react-oauth/google";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { userDetailsContext } from "../context/userDetailsContext";
 import axios from "axios";
 import { useMutation } from "convex/react";
@@ -48,6 +48,7 @@ function SignInDialog({ openDialog, closeDialog }) {
     onError: (errorResponse) => console.log(errorResponse),
   });
 
+ 
   return (
     <Dialog open={openDialog} onOpenChange={closeDialog}>
       <DialogContent>

@@ -1,7 +1,7 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
 
-
+// Mutation to create a new workspace
 export const CreateWorkspace = mutation({
     args: {
         messages: v.any(),
@@ -16,7 +16,7 @@ export const CreateWorkspace = mutation({
     }
 })
 
-
+// Query to retrieve a workspace by its ID
 export const GetWorkspace = query({
     args:{
         workspaceId: v.id('workspace')
@@ -27,6 +27,7 @@ export const GetWorkspace = query({
        }
 },)
 
+// Mutation to update messages in a workspace
 export const UpdateMessages = mutation({
     args:{
         workspaceId:v.id('workspace'),
@@ -41,7 +42,7 @@ export const UpdateMessages = mutation({
 })
 
 
-
+// Mutation to update files in a workspace
 export const UpdateFiles = mutation({
     args:{
         workspaceId:v.id('workspace'),
@@ -55,7 +56,7 @@ export const UpdateFiles = mutation({
     }
 })
 
-
+// Query to retrieve all workspaces associated with a specific user
 export const GetAllWorkspace = query({
     args:{
         userId:v.id('users')

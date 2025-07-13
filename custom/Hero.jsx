@@ -12,7 +12,7 @@ import { api } from "../convex/_generated/api";
 import { toast } from "sonner";
 
 function Hero() {
-  const [userInput, setUserInput] = useState(""); // ✅ FIXED: Initialize as empty string
+  const [userInput, setUserInput] = useState(""); 
   const { messages, setMessages } = useContext(MessageContext);
   const { userDetails, setUserDetails } = useContext(userDetailsContext);
   const [openDialog, setOpenDialog] = useState(false);
@@ -24,7 +24,7 @@ function Hero() {
   const onGenerate = async (input) => {
       
     
-    if (!userDetails || !userDetails._id) { // ✅ FIXED: Safe check for `_id`
+    if (!userDetails || !userDetails._id) { 
       setOpenDialog(true);
       return;
     }
@@ -41,9 +41,10 @@ function Hero() {
       user: userDetails._id,
       messages: [msg],
     });
-
+    
+    toast.success("redirect to workspace")
     router.push("/workspace/" + workspaceId);
-    setUserInput(""); // ✅ FIXED: Clear input after submission
+    setUserInput(""); 
   };
 
   return (
@@ -57,7 +58,7 @@ function Hero() {
       >
         <div className="flex gap-2">
           <textarea
-            value={userInput} // ✅ FIXED: Bind input to state
+            value={userInput} 
             placeholder={Lookup.INPUT_PLACEHOLDER}
             className="outline-none bg-transparent w-full h-32 max-h-56 resize-none"
             onChange={(e) => setUserInput(e.target.value)}

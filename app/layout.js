@@ -6,21 +6,23 @@ import { Toaster } from "../components/ui/sonner"
 import Header from "../custom/Header";
 
 export const metadata = {
-  title: "tunder.ai",
+  title: "thunder.ai",
   description: "Generated your app within a second",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
+        
         <ConvexClientProvider>
         <Provider>
-        <Toaster />
+        <Toaster  position="top-right" />
         {/* <Header /> */}
         {children}
         </Provider>
         </ConvexClientProvider>
+       
       </body>
     </html>
   );
