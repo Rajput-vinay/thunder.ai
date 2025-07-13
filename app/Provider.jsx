@@ -1,50 +1,55 @@
 "use client";
 
-import { MessageContext } from "../context/MessageContext";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { useEffect, useState } from "react";
-import { userDetailsContext } from "../context/userDetailsContext";
+import { useRouter } from "next/navigation";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useConvex } from "convex/react";
+import { userDetailsContext } from "../context/userDetailsContext";
+import { MessageContext } from "../context/MessageContext";
+import { ActionContext } from "../context/ActionContext";
 import { SidebarProvider } from "../components/ui/sidebar";
-import { api } from "../convex/_generated/api";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 import Header from "../custom/Header";
 import { AppSidebar } from "../custom/AppSideBar";
-import { PayPalScriptProvider } from "@paypal/react-paypal-js";
-import { ActionContext } from "../context/ActionContext";
-import { useRouter } from "next/navigation";
+import { api } from "../convex/_generated/api";
 
 export function Provider({ children }) {
-  const [messages, setMessages] = useState();
   const [userDetails, setUserDetails] = useState();
-  const convex = useConvex();
+  const [messages, setMessages] = useState();
   const [action, setAction] = useState();
+  const convex = useConvex();
   const router = useRouter();
 
+  // Load user from localStorage on app start
   useEffect(() => {
-    IsAutheicated();
-  }, [router,convex]);
-
-  const IsAutheicated = async () => {
-    if (typeof window !== undefined) {
-      const user = JSON.parse(localStorage.getItem("user"));
-
-      if (!user) {
+    if (typeof window !== "undefined") {
+      const storedUser = localStorage.getItem("user");
+      if (storedUser) {
+        setUserDetails(JSON.parse(storedUser));
+      } else {
         router.push("/");
-        return;
       }
-
-      const result = await convex.query(api.users.GetUser, {
-        email: user?.email,
-      });
-      setUserDetails(result);
-      console.log("result", result);
     }
-  };
+  }, [router]);
+
+  // Optional: verify fresh user data from backend if needed
+  useEffect(() => {
+    async function fetchUser() {
+      if (userDetails?.email) {
+        const freshUser = await convex.query(api.users.GetUser, {
+          email: userDetails.email,
+        });
+        if (freshUser) {
+          setUserDetails(freshUser);
+        }
+      }
+    }
+    fetchUser();
+  }, [convex, userDetails?.email]);
 
   return (
-    <div>
-      <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID_KEY}>
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID_KEY}>
       <PayPalScriptProvider options={{ clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID }}>
         <userDetailsContext.Provider value={{ userDetails, setUserDetails }}>
           <MessageContext.Provider value={{ messages, setMessages }}>
@@ -61,6 +66,5 @@ export function Provider({ children }) {
         </userDetailsContext.Provider>
       </PayPalScriptProvider>
     </GoogleOAuthProvider>
-    </div>
   );
 }

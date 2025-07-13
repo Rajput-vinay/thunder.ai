@@ -4,9 +4,14 @@ import Lookup from "../../../data/Lookup";
 import { useContext, } from "react";
 import Colors from "../../../data/Colors";
 import PricingModel from "../../../custom/PricingMode"
+import { useEffect } from "react";
 
 export default function pricing(){
     const {userDetails, setUserDetails} = useContext(userDetailsContext)
+    useEffect(() => {
+    console.log("Updated tokens:", userDetails?.token);
+  }, [userDetails?.token]);
+    console.log("userDetails", userDetails);
     return (
         <div className="mt-10 flex flex-col w-full p-10 md:px-32 lg:px-48 items-center ">
            <h2 className="font-bold text-5xl">Pricing</h2>
