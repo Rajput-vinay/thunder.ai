@@ -1,6 +1,6 @@
-# Tunder.ai
+#thunder.ai
 
-Tunder.ai is a **Blot.new clone** that allows users to **generate React.js websites**, customize them through commands, and preview their changes in real-time. Users can also download the generated code for further modifications.
+thunder.ai is a **Blot.new clone** that allows users to **generate React.js websites**, customize them through commands, and preview their changes in real-time. Users can also download the generated code for further modifications.
 
 ## 🚀 Features
 
@@ -19,7 +19,7 @@ Tunder.ai is a **Blot.new clone** that allows users to **generate React.js websi
 
 ```sh
 # Clone the repository
-git clone https://github.com/Rajput-vinay/tunder.ai.git
+git clone https://github.com/Rajput-vinay/thunder.ai.git
 cd my-app
 
 # Install dependencies
@@ -34,7 +34,7 @@ http://localhost:3000
 
 ## 🎯 Usage
 
-1. Open the Tunder.ai interface.
+1. Open thethunder.ai interface.
 2. Use commands to generate and customize your React.js website.
 3. Preview changes in real-time.
 4. Download the code when you're satisfied with the customization.
@@ -49,5 +49,5 @@ This project is licensed under the MIT License.
 
 ---
 
-🚀 **Start building your custom React.js website with Tunder.ai today!**
+🚀 **Start building your custom React.js website with thunder.ai today!**
 
