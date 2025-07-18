@@ -30,7 +30,7 @@ function Hero() {
     }
      
     if(userDetails?.token <10){
-      toast("You dont have enough token!")
+      toast.error("You dont have enough token!")
       return
     }
 

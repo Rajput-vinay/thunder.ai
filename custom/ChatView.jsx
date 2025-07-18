@@ -13,6 +13,7 @@ import axios from "axios";
 import { api } from "../convex/_generated/api";
 import ReactMarkdown from "react-markdown";
 import { useSidebar } from "../components/ui/sidebar";
+import { toast } from "sonner";
 
 export const countToken = (inputText) => {
   return inputText.trim().split(/\s+/).filter(word => word).length;
@@ -53,7 +54,8 @@ function ChatView() {
       console.log("message", result?.messages);
       setMessages(result?.messages);
     } catch (error) {
-      console.error("Error fetching workspace data:", error);
+      // console.error("Error fetching workspace data:", error);
+      toast.error("❌ Failed to fetch workspace data.");
     }
   };
 
@@ -92,6 +94,7 @@ function ChatView() {
       });
     } catch (error) {
       console.error("Error fetching AI response:", error);
+      toast.error("❌ Failed to generate AI response. Please try again.");
     }
     setLoading(false);
   };
@@ -99,7 +102,7 @@ function ChatView() {
   const onGenerate = (input) => {
 
     if(userDetails?.token <10){
-      toast('You dont have enough token!')
+      toast.error('You dont have enough token!')
       return;
     }
     setMessages((prev) => [

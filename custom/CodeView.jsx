@@ -19,6 +19,7 @@ import { countToken } from "./ChatView";
 import { userDetailsContext } from "../context/userDetailsContext";
 import SandPackPreviewClient from "./SandPackPreviewClient";
 import { ActionContext } from "../context/ActionContext";
+import { toast } from "sonner";
 function CodeView() {
   const [activeTab, setActiveTab] = useState("code");
   const [files, setFiles] = useState(Lookup?.DEFAULT_FILE);
@@ -81,6 +82,10 @@ function CodeView() {
 
       if (!aiResponse || typeof aiResponse !== "object") {
         console.error("Unexpected AI response format:", aiResponse);
+        toast.error("❌ AI did not return a valid response.");
+        setLoading(false);
+        setAction("error");
+        setTimeout(() => setAction(""), 2000);
         return;
       }
 
@@ -91,6 +96,12 @@ function CodeView() {
           "AI response does not contain valid files:",
           extractedFiles
         );
+        toast.error(`AI response does not contain valid files`);
+        setLoading(false);
+        setAction("error");
+        setTimeout(() => {
+          setAction("");
+        }, 2000);
         return;
       }
 
@@ -116,6 +127,7 @@ function CodeView() {
       });
     } catch (error) {
       console.error("Error generating AI code:", error);
+      toast.error("❌ Failed to generate code. Please try again.");
     } finally {
       setLoading(false);
     }

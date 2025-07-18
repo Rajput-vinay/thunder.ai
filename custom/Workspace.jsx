@@ -5,6 +5,7 @@ import { useConvex } from "convex/react";
 import { api } from "../convex/_generated/api";
 import Link from "next/link";
 import { useSidebar } from "../components/ui/sidebar";
+import { toast } from "sonner";
 
 function WorkspaceHistory() {
   const { userDetails } = useContext(userDetailsContext);
@@ -30,6 +31,7 @@ function WorkspaceHistory() {
       console.log("Get all workspace", result);
     } catch (error) {
       console.error("Error fetching workspaces:", error);
+      toast.error("Error fetching workspaces")
     }
   };
 
