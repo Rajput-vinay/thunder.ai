@@ -8,7 +8,8 @@ const {
   const genAI = new GoogleGenerativeAI(apiKey);
   
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash",
+    // model: "gemini-2.0-flash",
+    model:"gemini-2.5-pro"
   });
   
   //  copy All code from Gemini API Studio for parse the string from it and generate data in JSON
@@ -16,7 +17,8 @@ const {
     temperature: 1,
     topP: 0.95,
     topK: 40,
-    maxOutputTokens: 8192,
+    // maxOutputTokens: 8192,
+    maxOutputTokens:32768,
     responseMimeType: "text/plain",
   };
   
@@ -24,7 +26,8 @@ const {
     temperature: 1,
     topP: 0.95,
     topK: 40,
-    maxOutputTokens: 8192,
+    // maxOutputTokens: 8192,
+    maxOutputTokens:32768,
     responseMimeType: "application/json",
   };
   
