@@ -38,7 +38,7 @@ function WorkspaceHistory() {
       <h2 className="font-medium text-lg">Your Chats</h2>
       <div>
         {workspaceList?.map((workspace, index) => (
-          <Link href ={`workspace/${workspace._id}`} key={index} >
+          <Link href={`/workspace/${workspace._id}`} key={index}>
           <h2
             onClick={toggleSidebar}
             className="text-sm text-gray-400 mt-2 font-light hover:text-white cursor-pointer"

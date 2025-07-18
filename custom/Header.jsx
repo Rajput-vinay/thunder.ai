@@ -7,17 +7,17 @@ import Image from "next/image";
 import { useContext, useState } from "react";
 import { ActionContext } from "../context/ActionContext";
 import { useSidebar } from "../components/ui/sidebar";
-import { usePathname } from "next/navigation";
-import { LucideDownload, Rocket } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
+import { LucideDownload, Rocket, LogOut, ArrowLeft } from "lucide-react";
 import Link from "next/link";
-import SignInDialog from "./SigninDialog"; // 👈 Import your dialog
+import SignInDialog from "./SigninDialog";
 
 function Header() {
-  const { userDetails } = useContext(userDetailsContext);
+  const { userDetails, setUserDetails } = useContext(userDetailsContext);
   const { action, setAction } = useContext(ActionContext);
-
-  const [openDialog, setOpenDialog] = useState(false); // 👈 Dialog state
+  const [openDialog, setOpenDialog] = useState(false);
   const path = usePathname();
+  const router = useRouter();
 
   const onActionBtn = (actionType) => {
     setAction({
@@ -26,10 +26,22 @@ function Header() {
     });
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUserDetails(null);
+    router.push("/");
+  };
+
   return (
-    <div className="p-4 flex justify-between items-center">
+    <div className="p-4 flex justify-between items-center ">
       <Link href="/">
-        <Image src="/logo.png" alt="logo" width={40} height={40} />
+        <Image
+          src="/logo.png"
+          alt="logo"
+          width={40}
+          height={40}
+          className="cursor-pointer"
+        />
       </Link>
 
       {!userDetails?.name ? (
@@ -42,26 +54,33 @@ function Header() {
           </Button>
         </div>
       ) : (
-        path?.includes("workspace") && (
-          <div className="flex gap-2">
-            <Button
-              variant="ghost"
-              onClick={() => onActionBtn("export")}
-              aria-label="Export"
-            >
-              <LucideDownload />
-              Export
-            </Button>
-            <Button
-              className="bg-blue-500 text-white hover:bg-blue-600"
-              onClick={() => onActionBtn("deploy")}
-              aria-label="Deploy"
-            >
-              <Rocket />
-              Deploy
-            </Button>
-          </div>
-        )
+        <div className="flex items-center gap-3">
+          {path?.includes("workspace") && (
+            <>
+              <Button variant="ghost" onClick={() => onActionBtn("export")}>
+                <LucideDownload className="mr-2 h-4 w-4" />
+                Export
+              </Button>
+              <Button
+                className="bg-blue-500 text-white hover:bg-blue-600"
+                onClick={() => onActionBtn("deploy")}
+              >
+                <Rocket className="mr-2 h-4 w-4" />
+                Deploy
+              </Button>
+             
+            </>
+          )}
+          <Button
+            variant="ghost"
+            onClick={handleLogout}
+            title="Log out"
+            className="text-red-500"
+          >
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
+          </Button>
+        </div>
       )}
 
       {/* Sign In Dialog Mount */}
