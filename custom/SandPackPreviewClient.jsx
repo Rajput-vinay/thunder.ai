@@ -7,9 +7,9 @@ import { toast } from "sonner";
 
 function SandPackPreviewClient() {
   const previewRef = useRef();
-  const { sandpack } = useSandpack();
+  const { sandpack } = useSandpack();   
   const { action, setAction } = useContext(ActionContext);
-  const hasRun = useRef(false); // prevents multiple executions
+  const hasRun = useRef(false); 
 
   useEffect(() => {
     if (!sandpack || !action || hasRun.current) return;
